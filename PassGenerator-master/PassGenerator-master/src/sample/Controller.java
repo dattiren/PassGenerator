@@ -113,60 +113,82 @@ public class Controller implements Initializable{
 
     private void passgenerate(int length){
         // TODO Auto-generated method stub
-        StringBuilder result = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-        StringBuilder sign = new StringBuilder();
-
+		StringBuilder result = new StringBuilder(length);
+		StringBuilder num = new StringBuilder(10);
+		StringBuilder small = new StringBuilder(26);
+		StringBuilder big = new StringBuilder(26);
+        StringBuilder sign = new StringBuilder(2);
+        
+        Random random = new SecureRandom();
+        //記号(-と@)
         sign.append((char)0x2d);
         sign.append((char)0x40);
-
-        Random random = new SecureRandom();
-        int snum = random.nextInt(sign.length())+1; 
-        for(int i = 0;i < snum;i++) result.append(sign.charAt(random.nextInt(snum)));
-
-        getDataSet((char)0x41, (char)0x5b, sb);
-        int num = 3;
-        int num1 = random.nextInt(length-snum-num);
-        if(num1 == 0) {
-            num1 += 1;
+        //英字(大文字)を用意
+        getDataSet((char)0x41, (char)0x5b, big);
+        //英字(小文字)を用意
+        getDataSet((char)0x61, (char)0x7b, small);
+        //数字を用意
+        getDataSet((char)0x30, (char)0x3a, num);
+        
+        while(result.length() < length) {
+        	if(result.length() < length){
+        		for(int i=0; i < random.nextInt(sign.length()) + 1;i++) {
+            		result.append(sign.charAt(random.nextInt(sign.length())));
+            	}
+        	}
+        	if(result.length() < length){
+            	int smallnum = random.nextInt(length - result.length()) + 1;
+	        	for(int i=0; i < smallnum;i++) {
+	        		result.append(small.charAt(random.nextInt(small.length())));
+	        	}
+        	}else {
+        		continue;
+        	}
+        	if(result.length() < length){
+	        	int bignum = random.nextInt(length - result.length()) + 1;
+	        	for(int i=0; i < bignum;i++) {
+	        		result.append(big.charAt(random.nextInt(big.length())));
+	        	}
+        	}
         }
-        resultSet(num1, sb, result);
-
-        getDataSet((char)0x61, (char)0x7b, sb);
-        int num2 = random.nextInt(length-num1-num-1);
-        if(num2 == 0) {
-            num2 += 1;
-        }
-        resultSet(num2, sb, result);
-
-        getDataSet((char)0x30, (char)0x3a, sb);
-        int num3 = length-snum-num1-num2;
-        resultSet(num3, sb, result);
 
         String pass = shuffle(result.toString());
         passContent.setText(pass);
     }
    
     private void idgenerate(int length){
-        // TODO Auto-generated method stub
-        StringBuilder result = new StringBuilder();
-        StringBuilder sb = new StringBuilder();
-
-        Random random = new SecureRandom();
-        //大文字のデータセットを取得
-        getDataSet((char)0x41, (char)0x5b, sb);
-        int num = 3;
-        //小文字のデータセットを取得
-        getDataSet((char)0x61, (char)0x7b, sb);
-        int num2 = random.nextInt(length-num-1);
-        if(num2 == 0) {
-            num2 += 1;
-        }
-        resultSet(num2, sb, result);
-        //0-9の数字のデータセットを取得
-        getDataSet((char)0x30, (char)0x3a, sb);
-        int num3 = length-num2;
-        resultSet(num3, sb, result);
+    	// TODO Auto-generated method stub
+    			StringBuilder result = new StringBuilder(length);
+    			StringBuilder num = new StringBuilder(10);
+    			StringBuilder small = new StringBuilder(26);
+    			StringBuilder big = new StringBuilder(26);
+    	        StringBuilder sign = new StringBuilder(2);
+    	        
+    	        Random random = new SecureRandom();
+    	        
+    	        //英字(大文字)を用意
+    	        getDataSet((char)0x41, (char)0x5b, big);
+    	        //英字(小文字)を用意
+    	        getDataSet((char)0x61, (char)0x7b, small);
+    	        //数字を用意
+    	        getDataSet((char)0x30, (char)0x3a, num);
+    	        
+    	        while(result.length() < length) {
+    	        	if(result.length() < length){
+    	            	int smallnum = random.nextInt(length - result.length()) + 1;
+    		        	for(int i=0; i < smallnum;i++) {
+    		        		result.append(small.charAt(random.nextInt(small.length())));
+    		        	}
+    	        	}else {
+    	        		continue;
+    	        	}
+    	        	if(result.length() < length){
+    		        	int bignum = random.nextInt(length - result.length()) + 1;
+    		        	for(int i=0; i < bignum;i++) {
+    		        		result.append(big.charAt(random.nextInt(big.length())));
+    		        	}
+    	        	}
+    	        }
 
         String id = shuffle(result.toString());
         idContent.setText(id);
