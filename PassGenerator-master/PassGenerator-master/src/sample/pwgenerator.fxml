@@ -12,11 +12,11 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="454.0">
                <children>
-                  <Button layoutX="114.0" layoutY="185.0" mnemonicParsing="false" onAction="#idGenerate" prefHeight="48.0" prefWidth="100.0" text="ID生成">
+                  <Button fx:id="idButton" layoutX="114.0" layoutY="185.0" mnemonicParsing="false" onAction="#idGenerate" prefHeight="48.0" prefWidth="100.0" text="ID生成">
                      <font>
                         <Font size="22.0" />
                      </font></Button>
-                  <Label layoutX="17.0" layoutY="6.0" prefHeight="55.0" prefWidth="267.0" text="Buttonを押すとIDとパスワード()が生成されます。パスワード(英数字小文字大文字記号'-,@')" wrapText="true">
+                  <Label layoutX="17.0" layoutY="6.0" prefHeight="55.0" prefWidth="267.0" text="Buttonを押すとIDとパスワードが生成されます。パスワード(英数字小文字大文字記号'-@_.')" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -37,7 +37,7 @@
                   <Label fx:id="errorMessage" layoutX="21.0" layoutY="61.0" prefHeight="17.0" prefWidth="252.0" textFill="RED" />
                   <TextArea fx:id="idSize" layoutX="109.0" layoutY="81.0" prefHeight="34.0" prefWidth="55.0" promptText="文字数" />
                   <TextArea fx:id="passSize" layoutX="109.0" layoutY="130.0" prefHeight="34.0" prefWidth="55.0" promptText="文字数" />
-                  <Button layoutX="273.0" layoutY="185.0" mnemonicParsing="false" onAction="#passGenerate" prefHeight="48.0" prefWidth="100.0" text="パスワード生成">
+                  <Button fx:id="passButton" layoutX="273.0" layoutY="185.0" mnemonicParsing="false" onAction="#passGenerate" prefHeight="48.0" prefWidth="100.0" text="パスワード生成">
                      <font>
                         <Font size="14.0" />
                      </font>
